@@ -1,0 +1,15 @@
+@import '../../less/theme.less';
+
+@controlToolbarMargin: 5px;
+
+.control-toolbar {
+    padding: @paddingDefault - @controlToolbarMargin;
+
+    &__group {
+        margin: @controlToolbarMargin;
+
+        button:not(:last-child) {
+            margin-left: 5px;
+        }
+    }
+}

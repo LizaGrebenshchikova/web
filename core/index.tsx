@@ -1,9 +1,9 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
+import Editor from './pages/Editor';
+
 ReactDOM.render(
-    <div>
-        Cute app there
-    </div>,
+    <Editor />,
     document.getElementById('app-container')
 );
