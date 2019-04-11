@@ -10,6 +10,7 @@
   "license": "ISC",
   "devDependencies": {
     "@types/classnames": "^2.2.7",
+    "@types/fabric": "^2.6.9",
     "@types/file-saver": "^2.0.0",
     "@types/html2canvas": "0.0.35",
     "@types/jquery": "^3.3.29",
@@ -29,6 +30,7 @@
   "dependencies": {
     "bootstrap": "^4.3.1",
     "classnames": "^2.2.6",
+    "fabric": "^2.7.0",
     "file-saver": "^2.0.1",
     "html2canvas": "^1.0.0-alpha.12",
     "jquery": "^3.3.1",
