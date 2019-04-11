@@ -1,0 +1,21 @@
+.photo {
+    height: 120px;
+    width: 120px;
+    margin: 10px;
+    
+    border: 1px solid #007bff;
+    border-radius: 5px;   
+    
+    overflow: hidden;
+    transition: all 0.2s ease-out;
+    
+    &:hover {
+        box-shadow: 0px 0px 2px 2px #ffc107;
+    }
+    
+    // fix aspect ratio preserving
+    > img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+}
