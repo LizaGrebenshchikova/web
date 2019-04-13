@@ -6,9 +6,22 @@ async function getCanvas(node: HTMLElement) {
     return canvas;
 }
 
-async function saveScreenshot(node: HTMLElement, fileName: string) {
-    const canvas = await getCanvas(node);
+async function saveCanvasScreenshot(canvas: HTMLCanvasElement, fileName: string) {
     canvas.toBlob(blob => { fileSaver.saveAs(blob, fileName); });
+}
+
+async function saveNodeScreenshot(node: HTMLElement, fileName: string) {
+    const canvas = await getCanvas(node);
+    saveCanvasScreenshot(canvas, fileName);
+}
+
+function saveScreenshot(element: HTMLElement, fileName: string) {
+    if (element instanceof HTMLCanvasElement) {
+        saveCanvasScreenshot(element, fileName);
+    }
+    else {
+        saveNodeScreenshot(element, fileName);   
+    }
 }
 
 export { saveScreenshot };

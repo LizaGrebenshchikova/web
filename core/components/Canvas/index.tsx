@@ -14,7 +14,7 @@ export default class Canvas extends React.Component<CanvasProps> {
         height: 400
     }
 
-    private canvasRef = React.createRef<HTMLCanvasElement>();
+    canvasRef = React.createRef<HTMLCanvasElement>();
     private fabricCanvas: fabric.Canvas;
 
     componentDidMount() {

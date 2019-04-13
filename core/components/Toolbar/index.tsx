@@ -5,7 +5,7 @@ import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 
-interface ToolbarCallbacks {
+export interface ToolbarCallbacks {
     onClickSave: () => void;
 }
 
@@ -51,7 +51,7 @@ export default class Toolbar extends React.Component<ToolbarProps> {
         );
     }
 
-    private handleClickSave() {
+    private handleClickSave = () => {
         this.props.callbacks.onClickSave();
     }
 }
