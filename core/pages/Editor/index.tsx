@@ -20,7 +20,7 @@ export default class Editor extends React.Component<EditorProps> {
         return (
             <div className={prefixCls}>
                 <div className={`${prefixCls}__aside`}>
-                    <Photos />
+                    <Photos onAddPhoto={this.onAddPhoto} />
                 </div>
                 <div className={`${prefixCls}__content`}>
                     <div className={`${prefixCls}__content-toolbar`}>
@@ -32,5 +32,9 @@ export default class Editor extends React.Component<EditorProps> {
                 </div>
             </div>
         );
+    }
+
+    private onAddPhoto = (url: string) => {
+
     }
 }

@@ -11,8 +11,8 @@ interface PhotoProps {
 export default class Photo extends React.Component<PhotoProps> {
     render() {
         return (
-            <div className="photo">
-                <Image src={this.props.url} />
+            <div className='photo'>
+                <Image src={this.props.url}/>
             </div>
         );
     }

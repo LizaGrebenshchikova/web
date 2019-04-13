@@ -7,6 +7,7 @@ import PhotoList from '../PhotoList';
 
 interface PhotosProps {
     className: string;
+    onAddPhoto: (url: string) => void;
 }
 
 interface PhotosState {
@@ -32,13 +33,13 @@ export default class Photos extends React.Component<PhotosProps, PhotosState> {
                 <div className={`${className}__upload`}>
                     <div className="input-group">
                         <div className="custom-file">
-                            <input type="file" className="custom-file-input" id="inputGroupFile01" onChange={this.onLoadImage.bind(this)} />
+                            <input type="file" className="custom-file-input" id="inputGroupFile01" onChange={this.onLoadImage} />
                             <label className="custom-file-label" htmlFor='inputGroupFile01'>Choose file</label>
                         </div>
                     </div>
                 </div>
                 <div className={`${className}__list`}>
-                    <PhotoList photoUrls={this.state.photoUrls} />
+                    <PhotoList photoUrls={this.state.photoUrls} onAddPhoto={this.onAddPhoto} />
                 </div>
             </div>
         );
@@ -53,5 +54,9 @@ export default class Photos extends React.Component<PhotosProps, PhotosState> {
 
         const target = event.target as HTMLInputElement;
         fileReader.readAsDataURL(target.files[0]);
+    }
+
+    private onAddPhoto = (idx: number) => {
+        this.props.onAddPhoto(this.state.photoUrls[idx]);
     }
 }
