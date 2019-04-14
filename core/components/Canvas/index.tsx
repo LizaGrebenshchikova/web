@@ -3,7 +3,7 @@ import './style.less';
 import * as React from 'react';
 import { fabric } from 'fabric';
 
-import { saveScreenshot } from '../../services';
+import { saveFabricCanvasScreenshot } from '../../services';
 
 interface CanvasProps {
     height?: number;
@@ -31,9 +31,16 @@ export default class Canvas extends React.Component<CanvasProps> {
     }
 
     render() {
+        const {
+            height,
+            width
+        } = this.props;
+
         return (
-            <canvas className='collage-canvas' ref={this.canvasRef}>
-            </canvas>
+            <div className='collage-canvas' style={{ width, height }}>
+                <canvas ref={this.canvasRef}>
+                </canvas>
+            </div>
         );
     }
 
@@ -45,7 +52,7 @@ export default class Canvas extends React.Component<CanvasProps> {
         });    
     }
 
-    save() {
-        saveScreenshot(this.canvasRef.current, 'collage.png');   
+    save() {        
+        saveFabricCanvasScreenshot(this.fabricCanvas, 'collage', 'png');
     }
 }
