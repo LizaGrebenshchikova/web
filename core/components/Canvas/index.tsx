@@ -3,6 +3,8 @@ import './style.less';
 import * as React from 'react';
 import { fabric } from 'fabric';
 
+import { saveScreenshot } from '../../services';
+
 interface CanvasProps {
     height?: number;
     width?: number;
@@ -41,5 +43,9 @@ export default class Canvas extends React.Component<CanvasProps> {
         fabric.Image.fromURL(url, img => {
             fabricCanvas.add(img);
         });    
+    }
+
+    save() {
+        saveScreenshot(this.canvasRef.current, 'collage.png');   
     }
 }

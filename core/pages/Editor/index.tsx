@@ -2,8 +2,6 @@ import './style.less';
 
 import * as React from 'react';
 
-import { saveScreenshot } from '../../services';
-
 import Photos from '../../components/Photos';
 import Toolbar, { ToolbarCallbacks } from '../../components/Toolbar';
 import Canvas from '../../components/Canvas';
@@ -48,6 +46,6 @@ export default class Editor extends React.Component<EditorProps> {
     }
 
     private onClickSave = () => {
-        saveScreenshot(this.canvasRef.current.canvasRef.current, 'collage.png');
+        this.canvasRef.current.save();
     }
 }
