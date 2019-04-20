@@ -28,6 +28,7 @@ export default class Canvas extends React.Component<CanvasProps> {
         this.fabricCanvas = new fabric.Canvas(this.canvasRef.current);
         this.fabricCanvas.setHeight(height);
         this.fabricCanvas.setWidth(width);
+        this.fabricCanvas.selection = false;
     }
 
     render() {
