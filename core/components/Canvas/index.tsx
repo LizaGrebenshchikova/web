@@ -62,31 +62,41 @@ export default class Canvas extends React.Component<CanvasProps> {
     }
 
     changeSelectionPos(direction: Direction) {
+        const selection = this.fabricCanvas.getActiveObject();
+        if (!selection) {
+            return;
+        }
+
         const step = this.props.directionGridStep;
         switch (direction) {
             case 'up':
-                this.fabricCanvas.getActiveObject().top -= step;
+                selection.top -= step;
                 break;
             case 'down':
-                this.fabricCanvas.getActiveObject().top += step;
+                selection.top += step;
                 break;
             case 'left':
-                this.fabricCanvas.getActiveObject().left -= step;
+                selection.left -= step;
                 break;
             case 'right':
-                this.fabricCanvas.getActiveObject().left += step;
+                selection.left += step;
                 break;
         }
         this.fabricCanvas.renderAll();
     }
 
     changeSelectionZidx(direction: ZDirection) {
+        const selection = this.fabricCanvas.getActiveObject();
+        if (!selection) {
+            return;
+        }
+
         switch (direction) {
             case 'up':
-                this.fabricCanvas.getActiveObject().bringForward();
+                selection.bringForward();
                 break;
             case 'down':
-                this.fabricCanvas.getActiveObject().sendBackwards();
+                selection.sendBackwards();
                 break;
         }
     }
