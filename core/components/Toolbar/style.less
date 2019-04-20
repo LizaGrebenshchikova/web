@@ -7,16 +7,17 @@
     flex-flow: row nowrap;
     padding: @paddingDefault - @controlToolbarMargin;
 
-    &__group {
+    > * {
         margin: @controlToolbarMargin;
+    }
 
+    &__group {
         button:not(:last-child) {
             border-right: none;
         }
     }
 
     &__btn-save {
-        margin: @controlToolbarMargin;
         margin-left: auto;
     }
 }
