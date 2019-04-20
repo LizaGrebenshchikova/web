@@ -3,7 +3,12 @@ import './style.less';
 import * as React from 'react';
 
 import Photos from '../../components/Photos';
-import Toolbar, { ToolbarCallbacks } from '../../components/Toolbar';
+import Toolbar, { 
+    ToolbarCallbacks, 
+    Direction, 
+    Rotation, 
+    ZDirection 
+} from '../../components/Toolbar';
 import Canvas from '../../components/Canvas';
 
 interface EditorProps {
@@ -21,7 +26,10 @@ export default class Editor extends React.Component<EditorProps> {
         const { prefixCls } = this.props;
         
         const toolbarCallbacks: ToolbarCallbacks = {
-            onClickSave: this.onClickSave
+            onClickSave: this.onClickSave,
+            onClickChangePos: this.onClickChangePos,
+            onClickChangeRot: this.onClickChangeRot,
+            onClickChangeZidx: this.onClickChangeZidx
         };
 
         return (
@@ -47,5 +55,17 @@ export default class Editor extends React.Component<EditorProps> {
 
     private onClickSave = () => {
         this.canvasRef.current.save();
+    }
+
+    private onClickChangePos = (direction: Direction) => {
+
+    }
+
+    private onClickChangeRot = (rotation: Rotation) => {
+
+    }
+
+    private onClickChangeZidx = (direction: ZDirection) => {
+
     }
 }
