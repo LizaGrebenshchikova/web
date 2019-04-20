@@ -63,7 +63,7 @@ export default class Editor extends React.Component<EditorProps> {
     }
 
     private onClickChangePos = (direction: Direction) => {
-
+        this.canvasRef.current.changeSelectionPos(direction);
     }
 
     private onClickChangeRot = (rotation: Rotation) => {
