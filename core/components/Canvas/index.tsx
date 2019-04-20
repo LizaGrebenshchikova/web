@@ -4,6 +4,7 @@ import * as React from 'react';
 import { fabric } from 'fabric';
 
 import { saveFabricCanvasScreenshot } from '../../services';
+import { ZDirection } from '../Toolbar';
 
 interface CanvasProps {
     height?: number;
@@ -29,6 +30,7 @@ export default class Canvas extends React.Component<CanvasProps> {
         this.fabricCanvas.setHeight(height);
         this.fabricCanvas.setWidth(width);
         this.fabricCanvas.selection = false;
+        this.fabricCanvas.preserveObjectStacking = true;
     }
 
     render() {
@@ -55,5 +57,16 @@ export default class Canvas extends React.Component<CanvasProps> {
 
     save() {        
         saveFabricCanvasScreenshot(this.fabricCanvas, 'collage', 'png');
+    }
+
+    changeSelectionZidx(direction: ZDirection) {
+        switch (direction) {
+            case 'up':
+                this.fabricCanvas.getActiveObject().bringForward();
+                break;
+            case 'down':
+                this.fabricCanvas.getActiveObject().sendBackwards();
+                break;
+        }
     }
 }

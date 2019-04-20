@@ -66,6 +66,6 @@ export default class Editor extends React.Component<EditorProps> {
     }
 
     private onClickChangeZidx = (direction: ZDirection) => {
-
+        this.canvasRef.current.changeSelectionZidx(direction);
     }
 }
