@@ -69,4 +69,9 @@ export default class Canvas extends React.Component<CanvasProps> {
                 break;
         }
     }
+
+    clearSelection() {
+        this.fabricCanvas.discardActiveObject();
+        this.fabricCanvas.renderAll();
+    }
 }

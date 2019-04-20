@@ -14,6 +14,7 @@ export interface ToolbarCallbacks {
     onClickChangePos: (direction: Direction) => void;
     onClickChangeRot: (rotation: Rotation) => void;
     onClickChangeZidx: (direction: ZDirection) => void;
+    onClickClearSelection: () => void;
 }
 
 interface ToolbarProps {
@@ -48,6 +49,13 @@ export default class Toolbar extends React.Component<ToolbarProps> {
                     <Button variant='outline-primary' onClick={this.getChangeRotHandler('right')}>⭮</Button>
                 </ButtonGroup>
                 <Button 
+                    className={`${prefixCls}__btn-clear-selection`}
+                    variant='outline-primary'
+                    onClick={this.handleClickClearSelection}
+                >
+                    Clear selection
+                </Button>
+                <Button 
                     className={`${prefixCls}__btn-save`} 
                     variant='outline-warning' 
                     onClick={this.handleClickSave}
@@ -60,6 +68,10 @@ export default class Toolbar extends React.Component<ToolbarProps> {
 
     private handleClickSave = () => {
         this.props.callbacks.onClickSave();
+    }
+
+    private handleClickClearSelection = () => {
+        this.props.callbacks.onClickClearSelection();
     }
 
     private getChangePosHandler = (direction: Direction) => {

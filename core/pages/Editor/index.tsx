@@ -29,7 +29,8 @@ export default class Editor extends React.Component<EditorProps> {
             onClickSave: this.onClickSave,
             onClickChangePos: this.onClickChangePos,
             onClickChangeRot: this.onClickChangeRot,
-            onClickChangeZidx: this.onClickChangeZidx
+            onClickChangeZidx: this.onClickChangeZidx,
+            onClickClearSelection: this.onClickClearSelection
         };
 
         return (
@@ -55,6 +56,10 @@ export default class Editor extends React.Component<EditorProps> {
 
     private onClickSave = () => {
         this.canvasRef.current.save();
+    }
+
+    private onClickClearSelection = () => {
+        this.canvasRef.current.clearSelection();
     }
 
     private onClickChangePos = (direction: Direction) => {
