@@ -4,19 +4,21 @@ import * as React from 'react';
 import { fabric } from 'fabric';
 
 import { saveFabricCanvasScreenshot } from '../../services';
-import { Direction, ZDirection } from '../Toolbar';
+import { Direction, Rotation, ZDirection } from '../Toolbar';
 
 interface CanvasProps {
     height?: number;
     width?: number;
     directionGridStep?: number;
+    rotationGridStep?: number;
 }
 
 export default class Canvas extends React.Component<CanvasProps> {
     static defaultProps = {
         width: 400,
         height: 400,
-        directionGridStep: 5
+        directionGridStep: 5,
+        rotationGridStep: 5
     }
 
     canvasRef = React.createRef<HTMLCanvasElement>();
@@ -80,6 +82,24 @@ export default class Canvas extends React.Component<CanvasProps> {
                 break;
             case 'right':
                 selection.left += step;
+                break;
+        }
+        this.fabricCanvas.renderAll();
+    }
+
+    changeSelectionRot(rotation: Rotation) {
+        const selection = this.fabricCanvas.getActiveObject();
+        if (!selection) {
+            return;
+        }
+
+        const angle = selection.angle + this.props.rotationGridStep * (rotation === 'left' ? -1 : 1);
+        switch (rotation) {
+            case 'left':
+                selection.rotate(angle);
+                break;
+            case 'right':
+                selection.rotate(angle);
                 break;
         }
         this.fabricCanvas.renderAll();
