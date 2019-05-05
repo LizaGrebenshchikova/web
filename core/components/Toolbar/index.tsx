@@ -15,6 +15,8 @@ export interface ToolbarCallbacks {
     onClickChangeRot: (rotation: Rotation) => void;
     onClickChangeZidx: (direction: ZDirection) => void;
     onClickClearSelection: () => void;
+    onClickSetCanvasSize: () => void;
+    onClickRemove: () => void;
 }
 
 interface ToolbarProps {
@@ -34,6 +36,13 @@ export default class Toolbar extends React.Component<ToolbarProps> {
 
         return (
             <ButtonToolbar className={prefixCls}>
+                <Button 
+                    className={`${prefixCls}__btn-set-size`}
+                    variant='outline-primary'
+                    onClick={this.handleClickSetSize}
+                >
+                    Set canvas size
+                </Button>
                 <ButtonGroup className={groupCls}>
                     <Button variant='outline-primary' onClick={this.getChangePosHandler('up')}>↑</Button>
                     <Button variant='outline-primary' onClick={this.getChangePosHandler('down')}>↓</Button>
@@ -48,6 +57,13 @@ export default class Toolbar extends React.Component<ToolbarProps> {
                     <Button variant='outline-primary' onClick={this.getChangeRotHandler('left')}>⭯</Button>
                     <Button variant='outline-primary' onClick={this.getChangeRotHandler('right')}>⭮</Button>
                 </ButtonGroup>
+                <Button 
+                    className={`${prefixCls}__btn-remove`}
+                    variant='outline-primary'
+                    onClick={this.handleClickRemove}
+                >
+                    ×
+                </Button>
                 <Button 
                     className={`${prefixCls}__btn-clear-selection`}
                     variant='outline-primary'
@@ -70,8 +86,16 @@ export default class Toolbar extends React.Component<ToolbarProps> {
         this.props.callbacks.onClickSave();
     }
 
+    private handleClickSetSize = () => {
+        this.props.callbacks.onClickSetCanvasSize();
+    }
+
     private handleClickClearSelection = () => {
         this.props.callbacks.onClickClearSelection();
+    }
+
+    private handleClickRemove = () => {
+        this.props.callbacks.onClickRemove();
     }
 
     private getChangePosHandler = (direction: Direction) => {

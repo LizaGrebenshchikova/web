@@ -10,14 +10,27 @@ import Toolbar, {
     ZDirection 
 } from '../../components/Toolbar';
 import Canvas from '../../components/Canvas';
+import SizeModal from '../../components/SizeModal';
 
 interface EditorProps {
     prefixCls?: string;
 }
 
-export default class Editor extends React.Component<EditorProps> {
+interface EditorState {
+    height: number;
+    width: number;
+    showModal: boolean;
+}
+
+export default class Editor extends React.Component<EditorProps, EditorState> {
     static defaultProps = {
         prefixCls: 'collage-editor'
+    }
+
+    state = {
+        height: 400,
+        width: 400,
+        showModal: false
     }
 
     private canvasRef = React.createRef<Canvas>();
@@ -30,7 +43,9 @@ export default class Editor extends React.Component<EditorProps> {
             onClickChangePos: this.onClickChangePos,
             onClickChangeRot: this.onClickChangeRot,
             onClickChangeZidx: this.onClickChangeZidx,
-            onClickClearSelection: this.onClickClearSelection
+            onClickClearSelection: this.onClickClearSelection,
+            onClickSetCanvasSize: this.onModalShow,
+            onClickRemove: this.onRemovePhoto
         };
 
         return (
@@ -46,6 +61,13 @@ export default class Editor extends React.Component<EditorProps> {
                         <Canvas ref={this.canvasRef} />
                     </div>
                 </div>
+                <SizeModal
+                    show={this.state.showModal}
+                    initialWidth={this.state.width}
+                    initialHeight={this.state.height}
+                    onApply={this.onModalApply}
+                    onCancel={this.onModalHide}
+                />
             </div>
         );
     }
@@ -54,12 +76,28 @@ export default class Editor extends React.Component<EditorProps> {
         this.canvasRef.current.addPhoto(url);
     }
 
+    private onRemovePhoto = () => {
+        this.canvasRef.current.removeSelected();
+    }
+
     private onClickSave = () => {
         this.canvasRef.current.save();
     }
 
     private onClickClearSelection = () => {
         this.canvasRef.current.clearSelection();
+    }
+
+    private onModalShow = () => {
+        this.setState({ showModal: true });
+    }
+
+    private onModalApply = (width: number, height: number) => {
+        this.setState({ width, height, showModal: false });
+    }
+
+    private onModalHide = () => {
+        this.setState({ showModal: false });
     }
 
     private onClickChangePos = (direction: Direction) => {

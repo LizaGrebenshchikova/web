@@ -59,6 +59,15 @@ export default class Canvas extends React.Component<CanvasProps> {
         });    
     }
 
+    removeSelected() {
+        const selection = this.fabricCanvas.getActiveObject();
+        if (!selection) {
+            return;
+        }
+
+        this.fabricCanvas.remove(selection);
+    }
+
     save() {        
         saveFabricCanvasScreenshot(this.fabricCanvas, 'collage', 'png');
     }
