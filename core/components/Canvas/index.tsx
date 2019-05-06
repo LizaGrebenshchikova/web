@@ -27,11 +27,21 @@ export default class Canvas extends React.Component<CanvasProps> {
         } = this.props;
 
         this.fabricCanvas = new fabric.Canvas(this.canvasRef.current);
-        this.fabricCanvas.setHeight(height);
-        this.fabricCanvas.setWidth(width);
+        this.updateCanvasZoom(height, width);
         this.fabricCanvas.selection = false;
         this.fabricCanvas.preserveObjectStacking = true;
         this.fabricCanvas.setBackgroundColor('#fff', () => {});
+    }
+
+    componentDidUpdate(prevProps: CanvasProps) {
+        const {
+            height,
+            width
+        } = this.props;
+
+        if (prevProps.height !== height || prevProps.width !== width) {
+            this.updateCanvasZoom(height, width);
+        }
     }
 
     render() {
@@ -130,7 +140,12 @@ export default class Canvas extends React.Component<CanvasProps> {
         this.fabricCanvas.renderAll();
     }
 
-    private updateCanvasZoom(height: number, width: number) {
-
+    private updateCanvasZoom(canvasHeight: number, canvasWidth: number) {
+        const { height, width } = this.canvasRef.current.parentElement.parentElement.getBoundingClientRect();
+        const zoomScale = Math.min((height - 40) / canvasHeight, (width - 40) / canvasWidth, 1);
+        
+        this.fabricCanvas.setZoom(zoomScale);
+        this.fabricCanvas.setHeight(canvasHeight * zoomScale);
+        this.fabricCanvas.setWidth(canvasWidth * zoomScale);
     }
 }
