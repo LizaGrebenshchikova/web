@@ -7,6 +7,28 @@
 
     .photo-container {
         position: relative;
-        .remove-btn(20px);
+        margin: 10px;
+        border-radius: 5px;
+
+        &__remove-btn {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 20px;
+            height: 20px;
+            
+            opacity: 0;
+            .remove-btn();
+        };
+
+        transition: all 0.2s ease-out;
+        &:hover {
+            box-shadow: 0px 0px 2px 2px #ffc107;
+            transition: all 0.2s ease-out;
+
+            .photo-container__remove-btn {
+                opacity: 1;
+            }
+        }
     }
 }

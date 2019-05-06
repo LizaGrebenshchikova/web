@@ -1,34 +1,32 @@
 @import './theme.less';
 
-.remove-btn(@size) {
+.remove-btn() {
     &::before,
     &:before,
     &::after,
     &:after {
+        display: block;
         position: absolute;
-        top: round(@size / 4);
-        right: round(@size / 4);
-
         cursor: pointer;
     }
 
     &::before,
     &:before {
         content: '';
-        width: @size;
-        height: @size;
+        width: 100%;
+        height: 100%;
 
         background-color: @colorBgPrimary;
-        border-radius: @size;
+        border-radius: 25%;
         border: 1px solid @colorBorderSecondary;
     }
 
     &::after,
     &:after {
         content: '×';
-        width: @size - 1px;
+        width: calc(100% + 1px);
 
-        line-height: @size - 2px;
+        line-height: 100%;
         text-align: center;
         color: #fff;
         font-weight: bold;

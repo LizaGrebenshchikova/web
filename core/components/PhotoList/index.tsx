@@ -17,6 +17,7 @@ export default class PhotoList extends React.Component<PhotoListProps> {
                     return (
                         <div key={idx} className='photo-container' onClick={this.handleAddPhoto(idx)}>
                             <Photo url={url} />
+                            <div className='photo-container__remove-btn'></div>
                         </div>
                     )
                 })}
