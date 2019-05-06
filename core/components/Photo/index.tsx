@@ -6,6 +6,7 @@ import Image from 'react-bootstrap/Image';
 
 interface PhotoProps {
     url: string;
+    onClick: () => void;
     prefixCls?: string;
 }
 
@@ -15,11 +16,15 @@ export default class Photo extends React.Component<PhotoProps> {
     }
 
     render() {
-        const { prefixCls } = this.props;
+        const {
+            url,
+            onClick,
+            prefixCls
+        } = this.props;
 
         return (
-            <div className={prefixCls}>
-                <Image src={this.props.url}/>
+            <div className={prefixCls} onClick={onClick}>
+                <Image src={url} />
             </div>
         );
     }

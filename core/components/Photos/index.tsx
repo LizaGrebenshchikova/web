@@ -38,7 +38,11 @@ export default class Photos extends React.Component<PhotosProps, PhotosState> {
                     </div>
                 </div>
                 <div className={`${prefixCls}__list`}>
-                    <PhotoList photoUrls={this.state.photoUrls} onAddPhoto={this.onAddPhoto} />
+                    <PhotoList 
+                        photoUrls={this.state.photoUrls} 
+                        onAddPhoto={this.onAddPhoto} 
+                        onRemovePhoto={this.onRemovePhoto} 
+                    />
                 </div>
             </div>
         );
@@ -57,5 +61,11 @@ export default class Photos extends React.Component<PhotosProps, PhotosState> {
 
     private onAddPhoto = (idx: number) => {
         this.props.onAddPhoto(this.state.photoUrls[idx]);
+    }
+
+    private onRemovePhoto = (idx: number) => {
+        const photoUrls = this.state.photoUrls.slice();
+        photoUrls.splice(idx, 1);
+        this.setState({ photoUrls });
     }
 }
