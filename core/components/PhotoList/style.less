@@ -1,5 +1,12 @@
+@import '../../less/mixins.less';
+
 .photo-list {
     display: flex;
     flex-flow: row wrap;
     padding: 10px;
+
+    .photo-container {
+        position: relative;
+        .remove-btn(20px);
+    }
 }
