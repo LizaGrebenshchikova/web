@@ -1,5 +1,3 @@
-import './style.less';
-
 import * as React from 'react';
 import { fabric } from 'fabric';
 
@@ -7,16 +5,14 @@ import { saveFabricCanvasScreenshot } from '../../services';
 import { Direction, Rotation, ZDirection } from '../Toolbar';
 
 interface CanvasProps {
-    height?: number;
-    width?: number;
+    height: number;
+    width: number;
     directionGridStep?: number;
     rotationGridStep?: number;
 }
 
 export default class Canvas extends React.Component<CanvasProps> {
     static defaultProps = {
-        width: 400,
-        height: 400,
         directionGridStep: 5,
         rotationGridStep: 5
     }
@@ -35,6 +31,7 @@ export default class Canvas extends React.Component<CanvasProps> {
         this.fabricCanvas.setWidth(width);
         this.fabricCanvas.selection = false;
         this.fabricCanvas.preserveObjectStacking = true;
+        this.fabricCanvas.setBackgroundColor('#fff', () => {});
     }
 
     render() {
@@ -44,10 +41,8 @@ export default class Canvas extends React.Component<CanvasProps> {
         } = this.props;
 
         return (
-            <div className='collage-canvas' style={{ width, height }}>
-                <canvas ref={this.canvasRef}>
-                </canvas>
-            </div>
+            <canvas className='collage-canvas' ref={this.canvasRef}>
+            </canvas>
         );
     }
 
@@ -133,5 +128,9 @@ export default class Canvas extends React.Component<CanvasProps> {
     clearSelection() {
         this.fabricCanvas.discardActiveObject();
         this.fabricCanvas.renderAll();
+    }
+
+    private updateCanvasZoom(height: number, width: number) {
+
     }
 }

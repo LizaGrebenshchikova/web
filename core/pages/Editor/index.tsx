@@ -58,7 +58,11 @@ export default class Editor extends React.Component<EditorProps, EditorState> {
                         <Toolbar callbacks={toolbarCallbacks}/>
                     </div>
                     <div className={`${prefixCls}__content-workarea`}>
-                        <Canvas ref={this.canvasRef} />
+                        <Canvas 
+                            ref={this.canvasRef} 
+                            height={this.state.height}
+                            width={this.state.width}
+                        />
                     </div>
                 </div>
                 <SizeModal
