@@ -69,6 +69,7 @@ export default class SizeModal extends React.Component<SizeModalProps, SizeModal
                             defaultValue={`${initialWidth}`}
                             aria-label='width'
                             required={true}
+                            onChange={this.handleChangeWidth}
                         />
                         <InputGroup.Text className={`${prefixCls}__infix-text`}>×</InputGroup.Text>
                         <FormControl
@@ -80,6 +81,7 @@ export default class SizeModal extends React.Component<SizeModalProps, SizeModal
                             defaultValue={`${initialHeight}`}
                             aria-label='height'
                             required={true}
+                            onChange={this.handleChangeHeight}
                         />
                     </InputGroup>
                 </Modal.Body>
@@ -90,6 +92,16 @@ export default class SizeModal extends React.Component<SizeModalProps, SizeModal
             </Modal>
         );
     }
+
+    private handleChangeHeight = (event: React.FormEvent) => {
+        const target = event.target as HTMLInputElement;
+        this.setState({ height: parseInt(target.value) });
+    } 
+
+    private handleChangeWidth = (event: React.FormEvent) => {
+        const target = event.target as HTMLInputElement;
+        this.setState({ width: parseInt(target.value) });
+    } 
 
     private get isValidSize(): boolean {
         const { width, height } = this.state;
