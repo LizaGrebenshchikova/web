@@ -1,6 +1,7 @@
 import './style.less';
 
 import * as React from 'react';
+import * as uniqid from 'uniqid';
 
 import Photo from '../Photo';
 
@@ -16,7 +17,7 @@ export default class PhotoList extends React.Component<PhotoListProps> {
             <div className='photo-list'>
                 {this.props.photoUrls.map((url, idx) => {
                     return (
-                        <div key={idx} className='photo-container'>
+                        <div key={uniqid()} className='photo-container'>
                             <Photo url={url} onClick={this.getAddPhotoHanlder(idx)} />
                             <div className='photo-container__remove-btn' onClick={this.getRemovePhotoHandler(idx)} />
                         </div>

@@ -50,12 +50,14 @@ export default class Photos extends React.Component<PhotosProps, PhotosState> {
 
     private onLoadImage = (event: React.SyntheticEvent<HTMLInputElement>) => {
         const fileReader = new FileReader();
+        const target = event.target as HTMLInputElement;
+
         fileReader.onload = (() => {
             const photoUrls = this.state.photoUrls.concat([fileReader.result as string])
             this.setState({ photoUrls });
+            target.value = '';
         }).bind(this);
 
-        const target = event.target as HTMLInputElement;
         fileReader.readAsDataURL(target.files[0]);
     }
 
