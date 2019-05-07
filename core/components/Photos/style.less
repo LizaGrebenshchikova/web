@@ -1,6 +1,7 @@
 @import '../../less/theme.less';
 
 .photos-container {
+    height: 100%;
     display: flex;
     flex-flow: column nowrap;
 
@@ -8,5 +9,9 @@
         padding: @paddingDefault;
 
         border-bottom: 1px solid @colorBorderSecondary;
+    }
+
+    .photo-list {
+        height: calc(100% - 60px);
     }
 }

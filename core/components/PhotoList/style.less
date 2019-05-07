@@ -3,9 +3,14 @@
 .photo-list {
     display: flex;
     flex-flow: row wrap;
+    align-content: flex-start;
     padding: 10px;
 
+    overflow-y: auto;
+
     .photo-container {
+        height: 120px;
+        width: 120px;
         position: relative;
         margin: 10px;
         border-radius: 5px;
