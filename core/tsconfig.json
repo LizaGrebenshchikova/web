@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
-      "outDir": "../build/",
-      "sourceMap": true,
+      "outDir": "../docs/",
+      "sourceMap": false,
       "noImplicitAny": true,
       "module": "es6",
       "experimentalDecorators": true,

@@ -5,7 +5,6 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
 	entry: './index.tsx',
-	devtool: 'inline-source-map',
 	module: {
 		rules: [
 			{
@@ -29,6 +28,6 @@ module.exports = {
 	},
 	output: {
 		filename: 'bundle.js',
-		path: path.resolve(__dirname, '../build')
+		path: path.resolve(__dirname, '../docs')
 	}
 };
