@@ -3,14 +3,14 @@ App for online collage making. Non-commercial use.
 
 Supported browsers:
 
-Chrome >= 56
+Chrome >= 67
 
 Firefox >= 51
 
-Safari >= 10
+Safari >= 11
 
 Edge >= 40
 
-Opera >= 43
+Opera >= 54
 
 <b>No IE support!</b>
